@@ -1,11 +1,12 @@
 import joblib
 from sklearn.ensemble import RandomForestClassifier  
 
-
 model = RandomForestClassifier()
-model.fit([[0, 0], [1, 1]], [0, 1])  
-# ✅ Save model correctly
-joblib.dump(model, "hybrid_model.pkl", protocol=4)  # Ensures compatibility
+model.fit([[0, 0], [1, 1]], [0, 1])  # Dummy training data
 
-print("✅ Model saved as hybrid_model.pkl")
+# ✅ Save model correctly
+joblib.dump(model, "hybrid_model.pkl", protocol=4)  # Use protocol=4 to avoid compatibility issues
+
+print("✅ Model successfully saved as hybrid_model.pkl")
+
 
