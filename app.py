@@ -2,10 +2,10 @@ import streamlit as st
 import joblib
 import os
 
-# ✅ Function to safely load the model
+# ✅ Load the model safely
 @st.cache_resource
 def load_model():
-    model_path = "hybrid_model.pkl"  # Make sure this file is correctly uploaded
+    model_path = "hybrid_model.pkl"
     if os.path.exists(model_path):
         try:
             return joblib.load(model_path)
@@ -13,7 +13,7 @@ def load_model():
             st.error(f"⚠️ Error loading model: {e}")
             return None
     else:
-        st.error("⚠️ Model file not found! Please upload 'hybrid_model.pkl' to GitHub.")
+        st.error("⚠️ Model file not found! Upload 'hybrid_model.pkl' to GitHub.")
         return None
 
 # Load model
@@ -26,7 +26,7 @@ st.write("Ask me anything, and I'll predict the response based on my training!")
 # User input
 user_input = st.text_input("Enter your message:")
 
-# Function to predict response
+# Predict response
 def predict_response(user_input):
     if model:
         try:
