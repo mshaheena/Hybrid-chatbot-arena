@@ -1,0 +1,6 @@
+import joblib
+
+# Assuming 'model' is your trained hybrid model
+joblib.dump(model, "hybrid_model.pkl")
+
+print("Model saved successfully as hybrid_model.pkl!")
