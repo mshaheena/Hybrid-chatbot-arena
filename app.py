@@ -12,9 +12,9 @@ import sklearn
 # Load the trained model (ensure this is in the same directory or provide the correct path)
 @st.cache_resource
 def load_model():
-    return joblib.load("hybrid_model.pkl")  # Replace with your actual model file
+    return joblib.load("hybrid_model.pkl")  
 
-model = load_model()
+model = joblib.load("hybrid_model_fixed.pkl")  
 
 # Function to make predictions
 def predict_response(user_input):
