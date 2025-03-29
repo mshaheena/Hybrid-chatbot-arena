@@ -1,6 +1,11 @@
 import joblib
+from sklearn.ensemble import RandomForestClassifier  
 
-# Assuming 'model' is your trained hybrid model
-joblib.dump(model, "hybrid_model.pkl")
 
-print("Model saved successfully as hybrid_model.pkl!")
+model = RandomForestClassifier()
+model.fit([[0, 0], [1, 1]], [0, 1])  
+# ✅ Save model correctly
+joblib.dump(model, "hybrid_model.pkl", protocol=4)  # Ensures compatibility
+
+print("✅ Model saved as hybrid_model.pkl")
+
