@@ -5,7 +5,7 @@ import os
 # ✅ Function to safely load the model
 @st.cache_resource
 def load_model():
-    model_path = "hybrid_model.pkl"  # Ensure this file is in the correct directory
+    model_path = "hybrid_model.pkl"  # Make sure this file is correctly uploaded
     if os.path.exists(model_path):
         try:
             return joblib.load(model_path)
