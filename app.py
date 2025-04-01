@@ -7,11 +7,10 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
 
-# Title and description
 st.title("Multilingual Chatbot Arena Predictor")
 st.write("Enter a prompt and two responses to predict which one is preferred!")
 
-# Load models and vectorizer (with error handling)
+# Load models with error handling
 @st.cache_resource
 def load_models():
     try:
@@ -20,7 +19,7 @@ def load_models():
         tfidf = joblib.load("tfidf_vectorizer.pkl")
         return ft_model, xgb_model, tfidf
     except FileNotFoundError as e:
-        st.error(f"Model file missing: {e}. Please ensure all model files are in the directory.")
+        st.error(f"Model file missing: {e}. Please ensure all model files are uploaded.")
         return None, None, None
 
 ft_model, xgb_model, tfidf = load_models()
@@ -45,7 +44,7 @@ def predict_winner(prompt, response_a, response_b):
     tfidf_vec = tfidf.transform([combined_text])
     xgb_pred = round(xgb_model.predict(tfidf_vec)[0])
     
-    # Combine predictions (prioritize XGBoost if different)
+    # Combine predictions
     final_pred = xgb_pred if ft_pred != xgb_pred else ft_pred
     return "Response A" if final_pred == 0 else "Response B"
 
@@ -57,6 +56,5 @@ if st.button("Predict"):
     else:
         st.warning("Please fill in all fields.")
 
-# About section
 st.sidebar.header("About")
-st.sidebar.write("This app predicts the preferred chatbot response using a hybrid FastText + XGBoost model, trained on the WSDM Cup dataset. Accuracy: 85.7%.")
+st.sidebar.write("Hybrid FastText + XGBoost model trained on WSDM Cup data. Accuracy: 85.7%. Deployed with Streamlit.")
