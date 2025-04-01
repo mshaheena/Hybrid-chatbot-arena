@@ -1,0 +1,9 @@
+your-repo/
+├── app.py              # Streamlit app
+├── train.py            # Training script
+├── requirements.txt    # Dependencies
+├── fasttext_model.bin  # FastText model (after training)
+├── xgboost_model.pkl   # XGBoost model (after training)
+├── tfidf_vectorizer.pkl # TF-IDF vectorizer (after training)
+├── train.parquet       # Dataset (download from Kaggle)
+└── README.md           # Portfolio description
