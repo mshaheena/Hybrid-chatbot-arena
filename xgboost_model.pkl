@@ -1,0 +1,20 @@
+import xgboost as xgb
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+import joblib
+import pandas as pd
+
+df = pd.read_parquet("train.parquet")
+X = df["prompt"] + " " + df["response_a"] + " " + df["response_b"]
+y = LabelEncoder().fit_transform(df["winner"])
+
+# Vectorize text (reuse vectorizer from above)
+tfidf = joblib.load("tfidf_vectorizer.pkl")
+X_tfidf = tfidf.transform(X)
+
+# Split and train
+X_train, X_val, y_train, y_val = train_test_split(X_tfidf, y, test_size=0.2, random_state=42)
+model = xgb.XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+model.fit(X_train, y_train)
+
+joblib.dump(model, "xgboost_model.pkl")
