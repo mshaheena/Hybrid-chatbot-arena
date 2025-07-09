@@ -1,0 +1,12 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+import joblib
+import pandas as pd
+
+df = pd.read_parquet("train.parquet")
+X = df["prompt"] + " " + df["response_a"] + " " + df["response_b"]
+
+# Fit TF-IDF
+vectorizer = TfidfVectorizer(max_features=5000)
+vectorizer.fit(X)
+
+joblib.dump(vectorizer, "tfidf_vectorizer.pkl")
