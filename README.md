@@ -15,14 +15,19 @@ Welcome to the **Hybrid Chatbot Predictor** — a smart, multilingual chatbot sc
 ## 🎯 What It Does
 
 Given:
+
 - A user **prompt**
+
 - Two chatbot **responses**
 
 This hybrid model predicts **which response is better** — trained on real multilingual conversational data (WSDM Cup).
 
 Use cases:
+
 - 🔥 Chatbot comparison tools
+
 - 🤖 Customer service response testing
+
 - 🌍 Multilingual conversation understanding
 
 ---
@@ -58,21 +63,27 @@ hybrid-chatbot/
 ## 🔧 How to Run Locally
 
 git clone https://github.com/mshaheena/hybrid-chatbot
+
 cd hybrid-chatbot
 
 # (Optional) create virtual env
+
 python -m venv venv
+
 source venv/bin/activate
 
 # Install dependencies
+
 pip install -r requirements.txt
 
 # Launch app
+
 streamlit run app.py
 
 ----
 
 Or test directly:
+
 python predict.py
 
 ----
@@ -84,21 +95,32 @@ python predict.py
 
 ----
 *Ideal For Freelancers & Clients:
+
 AI Chatbot Evaluation Tools
+
 Multilingual NLP Apps
+
 Enterprise Chat UX Testing
+
 Academic Competitions (WSDM, etc.)
+
 ----
 *Future Ideas:
+
 Replace FastText with BERT or DistilBERT for deeper understanding
+
 Add memory/context chaining
+
 Support ranking for 3+ responses (RAG)
+
 ----
-About Me
+*About Me:
+
 I'm a machine learning developer building multilingual, production-grade AI tools.
 Looking for freelance work? Let’s build smart NLP systems together!
 
 📫 Contact: mshaheena8838@gmail.com
+
 💼 LinkedIn: https://www.linkedin.com/in/m-shaheena
 
 ----
