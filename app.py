@@ -1,3 +1,5 @@
+# app.py
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -7,10 +9,10 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
 
-st.title("Multilingual Chatbot Arena Predictor")
+st.set_page_config(page_title="Hybrid Chatbot", layout="centered")
+st.title("🤖 Hybrid Chatbot: WSDM Cup Evaluator")
 st.write("Enter a prompt and two responses to predict which one is preferred!")
 
-# Load models with error handling
 @st.cache_resource
 def load_models():
     try:
@@ -18,43 +20,44 @@ def load_models():
         xgb_model = joblib.load("xgboost_model.pkl")
         tfidf = joblib.load("tfidf_vectorizer.pkl")
         return ft_model, xgb_model, tfidf
-    except FileNotFoundError as e:
-        st.error(f"Model file missing: {e}. Please ensure all model files are uploaded.")
+    except Exception as e:
+        st.error(f"❌ Error loading models: {e}")
         return None, None, None
 
 ft_model, xgb_model, tfidf = load_models()
 
-# User input
-prompt = st.text_area("Enter your prompt:", "What is AI?")
-response_a = st.text_area("Response A:", "AI is artificial intelligence.")
-response_b = st.text_area("Response B:", "AI stands for artificial intelligence, a field in computing.")
+# --- Input Fields ---
+prompt = st.text_area("📝 Prompt", "What is AI?")
+response_a = st.text_area("💬 Response A", "AI is artificial intelligence.")
+response_b = st.text_area("💬 Response B", "AI stands for artificial intelligence, a field in computing.")
 
-# Prediction function
+# --- Prediction Logic ---
 def predict_winner(prompt, response_a, response_b):
     if not ft_model or not xgb_model or not tfidf:
-        return "Error: Models not loaded."
-    
-    # FastText prediction
+        return "❌ Models not loaded."
+
+    # FastText: predict label from prompt
     text = prompt.replace("\n", " ").strip()
-    ft_pred = ft_model.predict(text)[0][0]
-    ft_pred = 1 if ft_pred == "__label__1" else 0
-    
-    # TF-IDF + XGBoost prediction
+    label = ft_model.predict(text)[0][0]
+    fasttext_pred = 1 if label == "__label__1" else 0
+
+    # TF-IDF + XGBoost: predict from full input
     combined_text = f"{prompt} {response_a} {response_b}"
     tfidf_vec = tfidf.transform([combined_text])
     xgb_pred = round(xgb_model.predict(tfidf_vec)[0])
-    
-    # Combine predictions
-    final_pred = xgb_pred if ft_pred != xgb_pred else ft_pred
-    return "Response A" if final_pred == 0 else "Response B"
 
-# Predict button
-if st.button("Predict"):
+    # Combine both predictions (you can customize)
+    final = xgb_pred if fasttext_pred != xgb_pred else fasttext_pred
+    return "Response A" if final == 0 else "Response B"
+
+# --- Predict Button ---
+if st.button("🔍 Predict Preferred Response"):
     if prompt and response_a and response_b:
         winner = predict_winner(prompt, response_a, response_b)
-        st.success(f"Predicted Winner: **{winner}**")
+        st.success(f"🏆 Predicted Winner: **{winner}**")
     else:
-        st.warning("Please fill in all fields.")
+        st.warning("⚠️ Please fill in all fields!")
 
-st.sidebar.header("About")
-st.sidebar.write("Hybrid FastText + XGBoost model trained on WSDM Cup data. Accuracy: 85.7%. Deployed with Streamlit.")
+st.sidebar.markdown("## 📘 About")
+st.sidebar.info("This hybrid chatbot uses FastText + XGBoost trained on WSDM Cup multilingual chat data.")
+
