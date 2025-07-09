@@ -1,0 +1,15 @@
+import pandas as pd
+import fasttext
+
+# Load and prepare data
+df = pd.read_parquet("train.parquet")
+df["label"] = df["winner"].apply(lambda x: "__label__1" if x == "A" else "__label__0")
+
+with open("fasttext_train.txt", "w") as f:
+    for _, row in df.iterrows():
+        prompt = row["prompt"].replace("\n", " ").strip()
+        f.write(f"{row['label']} {prompt}\n")
+
+# Train FastText
+model = fasttext.train_supervised("fasttext_train.txt", epoch=50, lr=0.5, wordNgrams=3)
+model.save_model("fasttext_model.bin")
