@@ -1,119 +1,120 @@
-# 🤖 Hybrid Chatbot Predictor – Multilingual AI Model
+---
+title: Hybrid Chatbot Evaluator
+emoji: 🤖
+colorFrom: green
+colorTo: purple
+sdk: gradio
+sdk_version: 4.24.0
+app_file: app.py
+tags:
+  - chatbot
+  - ai
+  - machine-learning
+  - gradio
+  - huggingface
+  - nlp
+  - xgboost
+  - logistic-regression
+---
 
-Welcome to the **Hybrid Chatbot Predictor** — a smart, multilingual chatbot scoring engine built for **real-world AI competitions** and deployable commercial use.
+# 🤖 Hybrid Chatbot Evaluator
 
-🚀 This project combines **FastText** for fast intent recognition and **TF-IDF + XGBoost** for deep contextual judgment of chatbot responses.
+### 📍 **Live App:**  
+👉 [Click here to try it on Hugging Face Spaces](https://huggingface.co/spaces/mshaheena/hybrid-chatbot)
 
 ---
 
-## 🌐 Live Demo (Hugging Face Spaces)
+## 💡 What is This?
 
-👉 Try it here: [https://huggingface.co/spaces/mshaheena/hybrid-chatbot](https://huggingface.co/spaces/mshaheena/hybrid-chatbot)
+This is a **hybrid machine learning chatbot evaluator** that helps you determine which chatbot response is better given a prompt.
 
----
-
-## 🎯 What It Does
-
-Given:
-
-- A user **prompt**
-
-- Two chatbot **responses**
-
-This hybrid model predicts **which response is better** — trained on real multilingual conversational data (WSDM Cup).
-
-Use cases:
-
-- 🔥 Chatbot comparison tools
-
-- 🤖 Customer service response testing
-
-- 🌍 Multilingual conversation understanding
+It uses **intelligent intent detection** + **response scoring** to predict which response (A or B) is preferred.
 
 ---
 
-## 🧠 Tech Stack
+## 🔍 Example Use Case
 
-| Component | Description |
-|----------|-------------|
-| `FastText` | Lightweight and multilingual prompt classifier |
-| `TF-IDF + XGBoost` | Feature-based scorer for full prompt + responses |
-| `Streamlit` | Interactive web interface |
-| `Hugging Face Spaces` | One-click hosting for AI demos |
-| `scikit-learn` | Preprocessing & vectorization |
+> You have two different chatbot models and want to **automatically choose** the better response for a given prompt — **this app does that**.
 
----
-
-## 📦 Project Structure
-
-hybrid-chatbot/
-├── app.py # Streamlit UI for inference
-├── train.py # Full training pipeline
-├── predict.py # Command-line test script
-├── requirements.txt # All dependencies
-├── runtime.txt # Python version
-├── fasttext_model.bin # Trained FastText model
-├── xgboost_model.pkl # Trained XGBoost model
-├── tfidf_vectorizer.pkl # Saved vectorizer
-└── README.md # This file
-
+✅ Great for:
+- Evaluating AI assistants  
+- Testing multilingual chatbot models  
+- Ranking outputs from LLMs  
+- Real-time feedback for NLP applications
 
 ---
 
-## 🔧 How to Run Locally
+## 🧠 How It Works
 
-git clone https://github.com/mshaheena/hybrid-chatbot
+| Component           | Description |
+|--------------------|-------------|
+| 💬 Prompt Input     | User gives a conversational question or command |
+| 🅰️ / 🅱️ Response A/B | Two generated chatbot replies |
+| 🔍 Model Output     | App picks the most appropriate response |
 
-cd hybrid-chatbot
+The prediction is powered by two models:
 
-# (Optional) create virtual env
+### 1️⃣ **Intent Classifier**
+- Model: `Logistic Regression`
+- Features: `TF-IDF` on prompt only
+- Purpose: Understand the user's **intent or tone**
 
-python -m venv venv
+### 2️⃣ **Response Ranker**
+- Model: `XGBoost`
+- Features: Combined `TF-IDF` on prompt + responses
+- Purpose: Predict which response is **more suitable**
 
-source venv/bin/activate
+The final winner is chosen by **hybrid decision logic** 🧠⚖️
 
-# Install dependencies
+---
 
-pip install -r requirements.txt
+## 🚀 Technologies Used
 
-# Launch app
+| Tech / Tool | Description |
+|-------------|-------------|
+| 🐍 Python 3.10 | Backend |
+| 🤖 scikit-learn | ML: Logistic Regression |
+| ⚡ XGBoost | ML: Boosted trees |
+| 🔤 TfidfVectorizer | Text embedding |
+| 🎨 Gradio | User interface |
+| 💾 Joblib | Model saving/loading |
+| ☁️ Hugging Face Spaces | Hosting & deployment |
 
-streamlit run app.py
+---
 
-----
+## 📁 Project Files
 
-Or test directly:
+| File | Purpose |
+|------|---------|
+| `app.py` | Gradio interface |
+| `train.py` | Training both models |
+| `requirements.txt` | Dependencies |
+| `runtime.txt` | Python version lock |
+| `intent_model.pkl` | Trained intent classifier |
+| `intent_vectorizer.pkl` | TF-IDF for prompt |
+| `xgboost_model.pkl` | Trained response scorer |
+| `tfidf_vectorizer.pkl` | TF-IDF for full inputs |
 
-python predict.py
+---
 
-----
-| Model                      | Accuracy                   |
-| -------------------------- | -------------------------- |
-| FastText intent classifier | \~83%                      |
-| XGBoost response scorer    | \~87%                      |
-| Hybrid combination logic   | 💡 Smart fallback decision |
+## 💼 Freelancer Portfolio Ready
 
-----
-*Ideal For Freelancers & Clients:
+This project is ideal to show off:
+- Hybrid ML pipelines
+- Real-world NLP evaluation tools
+- Deployment with Hugging Face Spaces
+- Fast, interactive UI with Gradio
 
-AI Chatbot Evaluation Tools
+---
 
-Multilingual NLP Apps
+## 🌐 Try It Live!
 
-Enterprise Chat UX Testing
+🔗 [https://huggingface.co/spaces/mshaheena/hybrid-chatbot](https://huggingface.co/spaces/mshaheena/hybrid-chatbot)
 
-Academic Competitions (WSDM, etc.)
+---
 
-----
-*Future Ideas:
+## 🙋‍♀️ Built With ❤️ By [mshaheena](https://huggingface.co/mshaheena)
 
-Replace FastText with BERT or DistilBERT for deeper understanding
-
-Add memory/context chaining
-
-Support ranking for 3+ responses (RAG)
-
-----
 *About Me:
 
 I'm a machine learning developer building multilingual, production-grade AI tools.
