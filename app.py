@@ -2,7 +2,9 @@
 
 import streamlit as st
 import joblib
+import xgboost as xgb  # ✅ add this
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 # Load models
 @st.cache_resource
