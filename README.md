@@ -4,8 +4,9 @@ emoji: 🤖
 colorFrom: green
 colorTo: purple
 sdk: gradio
-sdk_version: 4.24.0
+sdk_version: "4.24.0"
 app_file: app.py
+pinned: false
 tags:
   - chatbot
   - ai
@@ -26,21 +27,21 @@ tags:
 
 ## 💡 What is This?
 
-This is a **hybrid machine learning chatbot evaluator** that helps you determine which chatbot response is better given a prompt.
+This is a **hybrid machine learning chatbot evaluator** that intelligently determines which chatbot response is better for a given prompt.
 
-It uses **intelligent intent detection** + **response scoring** to predict which response (A or B) is preferred.
+It uses **intent classification** + **response scoring** to predict which response (A or B) is preferred.
 
 ---
 
 ## 🔍 Example Use Case
 
-> You have two different chatbot models and want to **automatically choose** the better response for a given prompt — **this app does that**.
+> You have two chatbot models and want to **automatically select the better response** — this app helps you do just that.
 
 ✅ Great for:
 - Evaluating AI assistants  
-- Testing multilingual chatbot models  
+- Testing multilingual chatbots  
 - Ranking outputs from LLMs  
-- Real-time feedback for NLP applications
+- Real-time feedback in NLP pipelines
 
 ---
 
@@ -48,37 +49,37 @@ It uses **intelligent intent detection** + **response scoring** to predict which
 
 | Component           | Description |
 |--------------------|-------------|
-| 💬 Prompt Input     | User gives a conversational question or command |
-| 🅰️ / 🅱️ Response A/B | Two generated chatbot replies |
-| 🔍 Model Output     | App picks the most appropriate response |
+| 💬 Prompt Input     | User enters a conversational question or instruction |
+| 🅰️ / 🅱️ Responses   | Two generated chatbot replies |
+| 🔍 Model Output     | The app picks the better response using ML |
 
-The prediction is powered by two models:
+### Powered by Two Models:
 
-### 1️⃣ **Intent Classifier**
-- Model: `Logistic Regression`
-- Features: `TF-IDF` on prompt only
-- Purpose: Understand the user's **intent or tone**
+#### 1️⃣ Intent Classifier
+- 🔹 **Model:** Logistic Regression  
+- 🔹 **Input:** Prompt only (TF-IDF)  
+- 🔹 **Goal:** Understand the user's tone or intent
 
-### 2️⃣ **Response Ranker**
-- Model: `XGBoost`
-- Features: Combined `TF-IDF` on prompt + responses
-- Purpose: Predict which response is **more suitable**
+#### 2️⃣ Response Ranker
+- 🔸 **Model:** XGBoost  
+- 🔸 **Input:** Combined prompt + both responses (TF-IDF)  
+- 🔸 **Goal:** Choose the more relevant/stronger response
 
-The final winner is chosen by **hybrid decision logic** 🧠⚖️
+The final decision is made using **hybrid logic** 🧠⚖️
 
 ---
 
 ## 🚀 Technologies Used
 
-| Tech / Tool | Description |
-|-------------|-------------|
-| 🐍 Python 3.10 | Backend |
-| 🤖 scikit-learn | ML: Logistic Regression |
-| ⚡ XGBoost | ML: Boosted trees |
-| 🔤 TfidfVectorizer | Text embedding |
-| 🎨 Gradio | User interface |
+| Tech | Role |
+|------|------|
+| 🐍 Python 3.10 | Core programming |
+| 🤖 scikit-learn | Intent classifier |
+| ⚡ XGBoost | Response ranker |
+| 🔤 TfidfVectorizer | Text feature extraction |
 | 💾 Joblib | Model saving/loading |
-| ☁️ Hugging Face Spaces | Hosting & deployment |
+| 🎨 Gradio | User interface |
+| ☁️ Hugging Face Spaces | Deployment |
 
 ---
 
@@ -86,45 +87,43 @@ The final winner is chosen by **hybrid decision logic** 🧠⚖️
 
 | File | Purpose |
 |------|---------|
-| `app.py` | Gradio interface |
-| `train.py` | Training both models |
+| `app.py` | Gradio app |
+| `train.py` | Training logic |
 | `requirements.txt` | Dependencies |
-| `runtime.txt` | Python version lock |
-| `intent_model.pkl` | Trained intent classifier |
-| `intent_vectorizer.pkl` | TF-IDF for prompt |
-| `xgboost_model.pkl` | Trained response scorer |
-| `tfidf_vectorizer.pkl` | TF-IDF for full inputs |
+| `runtime.txt` | Python version |
+| `intent_model.pkl` | Intent classification model |
+| `intent_vectorizer.pkl` | TF-IDF for intent |
+| `xgboost_model.pkl` | Response scoring model |
+| `tfidf_vectorizer.pkl` | TF-IDF for response |
 
 ---
 
 ## 💼 Freelancer Portfolio Ready
 
-This project is ideal to show off:
-- Hybrid ML pipelines
-- Real-world NLP evaluation tools
-- Deployment with Hugging Face Spaces
-- Fast, interactive UI with Gradio
+This project is ideal to showcase your:
+- 🔁 Hybrid ML pipelines (LogReg + XGBoost)
+- 🌍 Real-world NLP evaluation use case
+- ☁️ Cloud-based deployment on Hugging Face
+- ⚡ Fast Gradio-based UI for demo or client use
 
 ---
 
 ## 🌐 Try It Live!
 
-🔗 [https://huggingface.co/spaces/mshaheena/hybrid-chatbot](https://huggingface.co/spaces/mshaheena/hybrid-chatbot)
+🔗 [Launch on Hugging Face](https://huggingface.co/spaces/mshaheena/hybrid-chatbot)
 
 ---
 
-## 🙋‍♀️ Built With ❤️ By [mshaheena](https://huggingface.co/mshaheena)
+## 🙋‍♀️ Built With ❤️ by [mshaheena](https://huggingface.co/mshaheena)
 
-*About Me:
+**About Me**  
+I'm a machine learning engineer with a passion for deploying real-time, multilingual, production-grade NLP applications.
 
-I'm a machine learning developer building multilingual, production-grade AI tools.
-Looking for freelance work? Let’s build smart NLP systems together!
+📬 **Contact:** mshaheena8838@gmail.com  
+💼 **LinkedIn:** [linkedin.com/in/m-shaheena](https://www.linkedin.com/in/m-shaheena)
 
-📫 Contact: mshaheena8838@gmail.com
+Let’s work together to build intelligent AI solutions! 🚀
 
-💼 LinkedIn: https://www.linkedin.com/in/m-shaheena
-
-----
 
 
 
