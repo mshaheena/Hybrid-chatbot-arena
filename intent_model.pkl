@@ -1,0 +1,24 @@
+# train_intent_model.py
+import joblib
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Sample data (same labels as vectorizer)
+prompts = [
+    "Hello", "Hi", "Good morning",
+    "Bye", "Good night", "See you later",
+    "Tell me a joke", "What is AI?", "Explain biology"
+]
+labels = [0, 0, 0, 1, 1, 1, 2, 2, 2]  # Intent classes
+
+# Load pre-saved vectorizer
+vectorizer = joblib.load("intent_vectorizer.pkl")
+X = vectorizer.transform(prompts)
+
+# Train the intent classifier
+model = LogisticRegression()
+model.fit(X, labels)
+
+# Save the model
+joblib.dump(model, "intent_model.pkl")
+print("✅ Saved: intent_model.pkl")
